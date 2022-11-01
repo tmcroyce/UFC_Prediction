@@ -1,3 +1,6 @@
+# The UFC Prediction Capstone
+![Martial Arts](kick_photo.jpg)
+
 # Files
 - [PDF Presentation](UFC_Prediction_Capstone.pdf)
 - [Video Presentation]()
