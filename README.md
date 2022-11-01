@@ -1,3 +1,7 @@
+# Files
+- [PDF Presentation](UFC_Prediction_Capstone.pdf)
+- [Video Presentation]()
+
 # Project Overview
 
 The purpose of this project is to create a model to predict the outcome of UFC (Ultimate Fighting Championship) events. The UFC was created in 1993 with the expressed purpose of identifying the most effective martial art(s). This project is an extension of my curiosity into the original purpose of the UFC; what makes a more effective martial artist?
@@ -8,6 +12,7 @@ The purpose of this project is to create a model to predict the outcome of UFC (
  - [UFC.com](https://www.ufc.com/events)
  - [UFCStats.com](https://www.ufcstats.com)
  - [BestFightOdds.com](https://www.bestfightodds.com)
+ -
 
 
 ### Data Description
@@ -67,4 +72,24 @@ After iterating on a variety of models, including decision tree, logistic regres
 
 ## Project Conclusion
 
-The final 
+The final model achieved a 70% (rounded) accuracy. 
+
+The model's most important features included:
+    - Leg Reach
+    - Betting Favorite
+    - Ground Strikes (Standard Deviation)
+    - Takedown Percentage (Standard Deviation)
+    - Head Strikes 
+    - Significant Strikes Percentage
+
+Upon looking into these features, we find that leg reach, while being the most important feature in the algorithm, is not necessarily a consistant advantage or disadvantage, so its importance must be coupled with other features. 
+
+The betting favorite wins approximately 62 percent of the time, indicating the lack of "market" (as in, the betting market) knowledge about what makes a winning fighter. That being said, it is our most accurate single statistical metric for predicting a fight. 
+
+Ground strikes are strikes thrown from a ground position, meaning the martial artists are likely utilizing wrestling, sambo, or jujitsu. The ability to utilize these is indoubtedly important. 
+
+Takedown percentage is the percentage of successful takedowns a martial artist has divided by the number attempted. A takedown typically involves utilizing wrestling skills, although variations with sambo, jujitsu, and judo also occur. It may be important to note that utilizing ground strikes is typically only possible after a successful takedown. 
+
+The number of head strikes is also important, albeit less so than the factors above. Head strikes - or the number of strikes to an opponents head, using boxing, muay thai, kickboxing, etc. - is often thought of as the most valuable technique for success, but we find it just to be among them. 
+
+Finally, significant strikes percentage. This can be thought of as the accuracy of the striker, but does not reflect total output. 
