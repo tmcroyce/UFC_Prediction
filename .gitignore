@@ -28,5 +28,9 @@ data/ufc_stats/sig_strikes2
 data/ufc_stats/fight_totals
 data/ufc_stats/fight_totals2
 data/models
-
+data/notebooks/final_notebooks/chromedriver.exe
+data/notebooks/final_notebooks/test.ipynb
+data/notebooks/2022-09-12-08-15-12.png
+data/notebooks/2022-09-12-08-16-21.png
+chromedriver.exe
 
