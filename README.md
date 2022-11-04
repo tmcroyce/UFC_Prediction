@@ -15,7 +15,6 @@ The purpose of this project is to create a model to predict the outcome of UFC (
  - [UFC.com](https://www.ufc.com/events)
  - [UFCStats.com](https://www.ufcstats.com)
  - [BestFightOdds.com](https://www.bestfightodds.com)
- -
 
 
 ### Data Description
