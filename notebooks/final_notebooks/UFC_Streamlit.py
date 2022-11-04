@@ -156,16 +156,21 @@ def secret_number(event_url):
         return '1123'
 
 next_eventz = get_next_event_ufcstats()
-##########           Data        ################
+
+
+##########           DATA        ################
 
 data = pd.read_csv(home + 'ufc_stats/agg2/all_fights_9_27_V9.csv')
+
 
 ##########           GET EVENTS       ################
 
 # make sure events have fight info. If not, disregard that event
 next = get_next_events2('https://www.ufc.com/events')
 
+
 ########           Select Next Event    ################
+
 
 event = st.sidebar.selectbox('Select Event', next['event_title'])
 selected_event = event
@@ -176,10 +181,13 @@ next_event = get_event_fights(event_url)
 fight = st.sidebar.selectbox('Select Fight', next_event['fighter1'] + ' vs. ' + next_event['fighter2'])
 
 ## Get Names ##
+
 selected_fighter_1 = fight.split(' vs. ')[0]
 selected_fighter_2 = fight.split(' vs. ')[1].strip()
 
+
 ########          Scrape UFC.com Data    ################
+
 
 # get the matchup fight numbers
 
@@ -193,6 +201,7 @@ for i in h:
 next_event['fight_number'] = data_fmid[:len(next_event)]
 next_event['matchup_url'] = event_url +'#' + next_event['fight_number'].astype(str)
 selected_matchup_url = next_event['matchup_url'][next_event['fighter1'] == selected_fighter_1].values[0]
+
 
 # Function to scrape UFC fight data
 def grab_matchup_data(matchup_url):
@@ -253,6 +262,7 @@ url = 'https://www.ufc.com/matchup/' + selected_event_secret_number + '/' + next
 
 a_record, b_record, a_height, b_height, a_reach, b_reach, a_leg, b_leg = grab_matchup_data(url)
 
+
 ##########     Get Fighter Info      ############# 
 
 
@@ -274,7 +284,10 @@ soup2 = BeautifulSoup(page2data, 'html.parser')
 fighter2_pic_url = soup2.find('img', class_='hero-profile__image')['src']
 
 
+
 ################ FIGHTER INFO ####################
+
+
 st.header('UFC Fight Prediction')
 st.write('Choose a fight from the sidebar to see the prediction.')
 
@@ -335,6 +348,8 @@ except:
 
 
 ###########  CALCULATE FIGHTER STATS FOR CURRENT FIGHT #############
+
+
 # calculate differences between in-match stats
 
 def calc_diffs(df):
@@ -345,7 +360,7 @@ def calc_diffs(df):
     return df
 
 # for each column in all_metric_cols, get the mean, std, etc. for each fighter, if necessary
-def get_fighter_running_dist_stats(fighter, df, date, col_to_get, stat_to_calc):
+#def get_fighter_running_dist_stats(fighter, df, date, col_to_get, stat_to_calc):
     data = df[(df['Fighter_A'] == fighter) | (df['Fighter_B'] == fighter)]
     # only get fights before the date
     datey = pd.to_datetime(date)
@@ -385,6 +400,7 @@ def get_fighter_running_dist_stats(fighter, df, date, col_to_get, stat_to_calc):
 # scrape UFCStats website for only next event to create new DF with
 
 #st.write(next_eventz)
+
 next_eventz['event_date'] = pd.to_datetime(next_eventz['event_date']).dt.date
 d_o_e = next_eventz['event_date'].values[0]
 doe = d_o_e.strftime('%Y-%m-%d')
@@ -395,9 +411,9 @@ nfd = pd.read_csv(home + 'final/next_fights/'+ doe + '_imputed.csv')
 #replace na with 0
 nfd.fillna(0, inplace=True)
 
+
 if nfd['Fighter_A'].values[0] == next_event['fighter1'].values[0]:
     next_fight_df = nfd
-
 else:
     next_fight_df = fighter_urls[['fighter1', 'fighter2:']]
     next_fight_df.columns = ['Fighter_A', 'Fighter_B']
@@ -462,12 +478,13 @@ else:
             next_fight_df['A_Rolling_' + col + '_' + stat] = next_fight_df.apply(lambda x: get_em(fighter=x['Fighter_A'], date=next_event_date, col_to_get=col, stat_to_calc=stat), axis=1)
             next_fight_df['B_Rolling_' + col + '_' + stat] = next_fight_df.apply(lambda x: get_em(fighter=x['Fighter_B'], date=next_event_date, col_to_get=col, stat_to_calc=stat), axis=1)
 
-    next_fight_df = next_fight_df.fillna(0)
-
+next_fight_df = next_fight_df.fillna(0)
 
 this_fight_df= next_fight_df[next_fight_df['Fighter_A'] == selected_fighter_1]
 
+
 ###### ADD LAST DATA POINTS TO THIS FIGHT DF ######
+
 
 this_fight_df['Fighter_A_Odds_obf'] = next_event['fighter1_odds'][next_event['fighter1'] == selected_fighter_1].values[0]
 this_fight_df['Fighter_B_Odds_obf'] = next_event['fighter2_odds'][next_event['fighter2'] == selected_fighter_2].values[0]
@@ -833,7 +850,7 @@ proper_order = ['Fighter_A',
 
 final_vect = this_fight_df[proper_order]
 
-st.write(final_vect)
+#st.write(final_vect)
 
 # load model
 extra_trees = pickle.load(open('C:\\Users\\tmcro\\OneDrive\\Data Science\\Personal_Projects\\Sports\\UFC_Prediction\\data\\models\\Extra_Trees_Gridsearched_7.pkl', 'rb'))
@@ -858,7 +875,10 @@ st.sidebar.write(selected_fighter_2 + " : " + str(prob_lose)+ "%")
 st.sidebar.write("")
 
 
+
 ###########        MATCHUPS      ###############
+
+
 st.sidebar.header('Selected UFC Event: '+ selected_event)
 
 ne = next_event.rename(columns={'fighter1': 'Fighter #1', 'fighter2': 'Fighter #2', 
@@ -871,7 +891,9 @@ st.sidebar.table(ne.style.format({'Fighter #1 Odds': '{:.2f}', 'Fighter #2 Odds'
 st.header('Important Features')
 st.write('The following features were the most important in the model')
 
+
 ############   ALL FEATURES  ############
+
 
 cols = ['A_Rolling_Total_Strikes_land_mean', 'B_Rolling_Total_Strikes_land_mean',
         'A_Rolling_Sig_strike_land_mean', 'B_Rolling_Sig_strike_land_mean',
@@ -915,8 +937,14 @@ last_name2 = selected_fighter_2.split()[1]
 st.write('https://en.wikipedia.org/wiki/' + first_name2 + '_' + last_name2)
 
 st.subheader('UFC.COM')
-st.write('https://www.ufc.com/athlete/' + first_name1 + '_' + last_name1)
-st.write('https://www.ufc.com/athlete/' + first_name2 + '_' + last_name2)
+st.write('https://www.ufc.com/search?query=' + first_name1 + '+' + last_name1)
+st.write('https://www.ufc.com/search?query=' + first_name2 + '+' + last_name2)
+
+st.subheader('Sherdog Stats')
+st.write('https://www.sherdog.com/search.php?q=' + first_name1 + '+' + last_name1)
+st.write('https://www.sherdog.com/search.php?q=' + first_name2 + '+' + last_name2)
+
+
 
 
 
