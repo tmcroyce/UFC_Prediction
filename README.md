@@ -9,6 +9,8 @@
 
 The purpose of this project is to create a model to predict the outcome of UFC (Ultimate Fighting Championship) events. The UFC was created in 1993 with the expressed purpose of identifying the most effective martial art(s). This project is an extension of my curiosity into the original purpose of the UFC; what makes a more effective martial artist?
 
+This project's end result will be an application which can help identify descrepancies between the "Vegas" odds of a fight and the model-predicted (i.e., theoretically more accurate) odds of that same fight. This could be used by bookmakers to increase revenues by offering slightly "better" odds than competitor bookmakers, given the model indicates it is appropriate. Alternatively, it could be used by bookmakers to create more accurate odds than previously, as the favorite only wins around 60% of the time in MMA.
+
 # Data Overview
 
 ## Sources:
