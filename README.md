@@ -2,7 +2,7 @@
 ![Martial Arts](kick_photo.jpg)
 
 # Files
-- [PDF Presentation](UFC_Prediction_Capstone.pdf)
+- [PDF Presentation](presentation.pdf)
 - [Video Presentation of Streamlit Application](https://www.youtube.com/watch?v=dl-JhDgQbRA)
 
 # Project Overview
