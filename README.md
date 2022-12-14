@@ -8,7 +8,11 @@
 # Repo Structure
 - The data is divided into four folders:
    - Final (aggregates of aggregates)
-   - UFC.
+   - UFC_COM (UFC.COM Data)
+   - UFC_Stats (UFC Stats Data)
+   - BestFightOdds (BestFightOdds Data)
+   
+- Final Notebook: [Final Notebook Link](https://github.com/tmcroyce/UFC_Prediction/blob/master/notebooks/final_notebooks/UFC_Prediction.ipynb)
 
 # Project Overview
 
