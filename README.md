@@ -5,6 +5,11 @@
 - [PDF Presentation](presentation.pdf)
 - [Video Presentation of Streamlit Application](https://www.youtube.com/watch?v=dl-JhDgQbRA)
 
+# Repo Structure
+- The data is divided into four folders:
+   - Final (aggregates of aggregates)
+   - UFC.
+
 # Project Overview
 
 The purpose of this project is to create a model to predict the outcome of UFC (Ultimate Fighting Championship) events. The UFC was created in 1993 with the expressed purpose of identifying the most effective martial art(s). This project is an extension of my curiosity into the original purpose of the UFC; what makes a more effective martial artist?
